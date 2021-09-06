@@ -13,7 +13,7 @@ function generateUserCard(userObj) {
   });
 
   img.addEventListener("error", deleteHandler);
-  img.addEventListener("Load", imageLoadeHandler);
+  img.addEventListener("load", imageLoadeHandler);
 
   const initails = createElement(
     "div",
@@ -33,7 +33,7 @@ function generateUserCard(userObj) {
     "div",
     {
       classNames: ["imgWrapper"],
-      attrs: { id: `wrappers${id}` },
+      attrs: { id: `wrapper${id}` },
     },
     initails
   );
@@ -47,21 +47,32 @@ function generateUserCard(userObj) {
     "p",
     { classNames: ["cardDescription"] },
     document.createTextNode(
-      `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto ad molestiae nesciunt aliquid, quis voluptatem, labore, voluptates hic qui sequi consequuntur praesentium recusandae omnis delectus adipisci quae dolore excepturi. Officiis.`
+      `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto ad molestiae nesciunt aliquid, quis voluptatem, labore, voluptates hic qui sequi consequuntur praesentium recusandae omnis .`
     )
+  );
+
+  const linkWrapper = createElement(
+    "div",
+    {
+      classNames: ["linkWrapper"],
+    },
+    ...generateLinks(contacts)
   );
   const article = createElement(
     "article",
     { classNames: ["userCard"] },
     imgWrapper,
     userName,
-    cardDescription
+    cardDescription,
+    linkWrapper
   );
+
   const userCard = createElement(
     "li",
     { classNames: ["cardWrapper"] },
     article
   );
+
   return userCard;
 }
 
@@ -105,4 +116,22 @@ function imageLoadeHandler(e) {
   } = e;
 
   document.getElementById(`wrapper${id}`).append(target);
+}
+
+function generateLinks(contacts) {
+  const userLinks = contacts
+    .map((contact) => {
+      const url = new URL(contact);
+      const hostname = url.hostname;
+      if (SUPPORTED_SOCIAL_NETWORKS.has(hostname)) {
+        const link = createElement("a", {
+          classNames: SUPPORTED_SOCIAL_NETWORKS.get(hostname),
+          attrs: { href: contact, target: "_blank " },
+        });
+        return link;
+      }
+    })
+    .filter(Boolean);
+
+  return userLinks;
 }
