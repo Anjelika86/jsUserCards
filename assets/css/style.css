@@ -20,6 +20,8 @@
 }
 
 .img {
+  object-fit: cover;
+  object-position: center;
   position: absolute;
   inset: 0;
   display: block;
@@ -32,6 +34,7 @@
 }
 
 .cardName {
+  margin: 30px 0;
   font-size: 1.5rem;
   font-weight: bold;
 }
@@ -61,4 +64,22 @@
 
 .icon:hover {
   color: red;
+}
+
+.social {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  border: 1px solid black;
+  border-radius: 5px;
+  color: black;
+  margin: 5px;
+}
+.social:hover {
+  background-color: red;
+}
+
+.linkWrapper {
+  display: flex;
+  justify-content: center;
 }
