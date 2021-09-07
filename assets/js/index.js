@@ -24,6 +24,13 @@ function generateUserCard(userObj) {
         .split(" ")
         .map((word) => word[0])
         .join(" ")
+    ),
+    document.createTextNode(
+      lastName
+        .trim()
+        .split(" ")
+        .map((word) => word[0])
+        .join(" ")
     )
   );
 
@@ -43,6 +50,7 @@ function generateUserCard(userObj) {
     { classNames: ["cardName"] },
     document.createTextNode(`${firstName} ${lastName}`)
   );
+
   const cardDescription = createElement(
     "p",
     { classNames: ["cardDescription"] },
@@ -72,66 +80,5 @@ function generateUserCard(userObj) {
     { classNames: ["cardWrapper"] },
     article
   );
-
   return userCard;
-}
-
-function createElement(tagName, options, ...children) {
-  const { classNames = [], attrs = {}, onClick = () => {} } = options;
-  const element = document.createElement(tagName);
-  element.classList.add(...classNames);
-  const attributesTuples = Object.entries(attrs);
-  for (const [key, value] of attributesTuples) {
-    element.setAttribute(key, value);
-  }
-  element.onClick = onClick;
-  element.append(...children);
-  // element.id = id;
-  return element;
-}
-
-function deleteHandler({ target }) {
-  target.remove();
-}
-
-function stringToColour(str) {
-  let hash = 0;
-  for (let i = 0; i < str.length; i++) {
-    hash = str.charCodeAt(i) + ((hash << 5) - hash);
-  }
-  var colour = "#";
-  for (var i = 0; i < 3; i++) {
-    var value = (hash >> (i * 8)) & 0xff;
-    colour += ("00" + value.toString(16)).substr(-2);
-  }
-  return colour;
-}
-
-function imageLoadeHandler(e) {
-  const {
-    target: {
-      dataset: { id },
-    },
-    target,
-  } = e;
-
-  document.getElementById(`wrapper${id}`).append(target);
-}
-
-function generateLinks(contacts) {
-  const userLinks = contacts
-    .map((contact) => {
-      const url = new URL(contact);
-      const hostname = url.hostname;
-      if (SUPPORTED_SOCIAL_NETWORKS.has(hostname)) {
-        const link = createElement("a", {
-          classNames: SUPPORTED_SOCIAL_NETWORKS.get(hostname),
-          attrs: { href: contact, target: "_blank " },
-        });
-        return link;
-      }
-    })
-    .filter(Boolean);
-
-  return userLinks;
 }
