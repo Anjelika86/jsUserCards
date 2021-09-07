@@ -20,8 +20,8 @@
 }
 
 .img {
-  object-fit: cover;
   object-position: center;
+  object-fit: cover;
   position: absolute;
   inset: 0;
   display: block;
@@ -34,39 +34,38 @@
 }
 
 .cardName {
-  margin: 30px 0;
+  margin: 20px 0;
   font-size: 1.5rem;
   font-weight: bold;
 }
-
-/* .cardDescription {
-} */
+.cardDescription {
+  margin: 20px;
+}
 
 .initails {
   position: absolute;
   inset: 0;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
-  /* background-color: black; */
   color: white;
+  font-size: 2rem;
 }
 
 .initails:empty::after {
   content: "Unknown";
 }
 
-.icon {
+/* .icon {
   color: green;
 }
 
 .icon:hover {
   color: red;
-}
+} */
 
 .social {
+  width: 40px;
   display: block;
   padding: 10px;
   text-decoration: none;
@@ -80,6 +79,7 @@
 }
 
 .linkWrapper {
+  margin-bottom: 20px;
   display: flex;
   justify-content: center;
 }
