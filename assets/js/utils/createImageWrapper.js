@@ -2,7 +2,18 @@ function createImageWrapper(userObj) {
   const { id, firstName, lastName, profilePicture } = userObj;
   const img = createElement("img", {
     classNames: ["img"],
-    attrs: { src: profilePicture, alt: firstName, "data-id": id },
+    attrs: {
+      src: profilePicture,
+      alt: firstName,
+      title: `${firstName} ${lastName}`,
+
+      "data-id": id,
+    },
+    listener: {
+      click: (e) => {
+        alert(`${firstName} ${lastName}`);
+      },
+    },
   });
 
   img.addEventListener("error", deleteHandler);
@@ -12,14 +23,7 @@ function createImageWrapper(userObj) {
     "div",
     { classNames: ["initails"] },
     document.createTextNode(
-      firstName
-        .trim()
-        .split(" ")
-        .map((word) => word[0])
-        .join(" ")
-    ),
-    document.createTextNode(
-      lastName
+      `${firstName} ${lastName}`
         .trim()
         .split(" ")
         .map((word) => word[0])
