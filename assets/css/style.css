@@ -1,14 +1,23 @@
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.cardsContainer,
+.linkWrapper,
+.initails {
+  display: flex;
 }
 
 .cardsContainer {
-  display: flex;
+  font-family: sans-serif;
+  line-height: 1.5;
   flex-wrap: wrap;
 }
 
 .cardWrapper {
-  border: 2px solid black;
+  /* border: 1px solid black; */
   width: 300px;
   margin: 10px;
 }
@@ -19,18 +28,25 @@
   height: 300px;
 }
 
+.img,
+.initails {
+  position: absolute;
+}
+.img,
+.social {
+  display: block;
+}
+
 .img {
   object-position: center;
   object-fit: cover;
-  position: absolute;
   inset: 0;
-  display: block;
   width: 100%;
   height: inherit;
 }
 
 .userCard {
-  text-align: center;
+  text-align: left;
 }
 
 .cardName {
@@ -39,47 +55,39 @@
   font-weight: bold;
 }
 .cardDescription {
-  margin: 20px;
+  color: rgb(74, 73, 80);
+  margin: 15px 0;
 }
 
 .initails {
-  position: absolute;
   inset: 0;
-  display: flex;
   justify-content: center;
   align-items: center;
   color: white;
   font-size: 2rem;
 }
 
-.initails:empty::after {
+.initails:empty::after,
+.cardName:empty::after {
   content: "Unknown";
 }
 
-/* .icon {
-  color: green;
-}
-
-.icon:hover {
-  color: red;
-} */
-
 .social {
-  width: 40px;
-  display: block;
-  padding: 10px;
+  width: 35px;
+  padding: 8px;
   text-decoration: none;
-  border: 1px solid black;
+  border: 1px solid rgb(74, 73, 80);
   border-radius: 5px;
-  color: black;
-  margin: 5px;
+  color: rgb(74, 73, 80);
+  margin: 10px 5px 0 0;
+  text-align: center;
 }
 .social:hover {
   background-color: red;
+  color: white;
 }
-
 .linkWrapper {
   margin-bottom: 20px;
-  display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: center;
 }
