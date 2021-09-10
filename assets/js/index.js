@@ -6,12 +6,12 @@ const userCards = data.map((userObj) => generateUserCard(userObj));
 cardsContainer.append(...userCards);
 
 function generateUserCard(userObj) {
-  const { id, firstName, lastName, profilePicture, contacts } = userObj;
+  const { firstName, lastName, contacts } = userObj;
 
   const userName = createElement(
     "h2",
     { classNames: ["cardName"] },
-    document.createTextNode(`${firstName} ${lastName}`)
+    document.createTextNode(`${firstName} ${lastName}`.trim())
   );
 
   const cardDescription = createElement(
